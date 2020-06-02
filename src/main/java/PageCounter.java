@@ -17,7 +17,13 @@ public class PageCounter extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        try{
+            if(request.getParameter("reset").equals("1")){
+                hitCount = 0;
+            }
+        }catch(NullPointerException exc){
+            exc.printStackTrace();
+        }
         response.setContentType("text/html");
         hitCount++;
         PrintWriter out = response.getWriter();
